@@ -7,6 +7,7 @@
 //
 
 // https://hp-api.onrender.com/api/spells
+// https://api.potterdb.com/v1/spells
 
 import SwiftUI
 
@@ -17,12 +18,13 @@ struct ListView: View {
     
     var body: some View {
         NavigationStack {
-            List(spells, id: \.self) { spell in
-                Text(spell)
+            List(spellVM.spellArray) { spell in
+                Text(spell.name)
                     .font(.custom("Avenir Next Condensed", size: 24))
             }
             .listStyle(.plain)
             .navigationTitle("Olivander's Wand")
+            .navigationBarColour(.potterPurple)
         }
         .task {
             await spellVM.getData()
