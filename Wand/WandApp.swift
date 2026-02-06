@@ -12,7 +12,10 @@ import SwiftUI
 struct WandApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ListView()
+                .onAppear {
+                    Thread.sleep(forTimeInterval: 3)
+                }
         }
     }
 }
