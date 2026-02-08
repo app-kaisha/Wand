@@ -13,14 +13,17 @@ import SwiftUI
 
 struct ListView: View {
     
-    @State private var spells = ["Accio Dittany", "Accio Firebolt", "Accio Locket"]
     @State private var spellVM = Spells()
     
     var body: some View {
         NavigationStack {
             List(spellVM.spellArray) { spell in
-                Text(spell.name)
-                    .font(.custom("Avenir Next Condensed", size: 24))
+                NavigationLink {
+                    DetailView(spell: spell)
+                } label: {
+                    Text(spell.name)
+                        .font(.custom("Avenir Next Condensed", size: 24))
+                }
             }
             .listStyle(.plain)
             .navigationTitle("Olivander's Wand")
@@ -28,6 +31,7 @@ struct ListView: View {
         }
         .task {
             await spellVM.getData()
+            
         }
     }
 }
